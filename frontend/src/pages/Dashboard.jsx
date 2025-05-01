@@ -3,7 +3,8 @@ import { Navigate, Route, Routes, Outlet } from "react-router-dom";
 import DashboardHeader from "@/components/DashboardHeader.jsx";
 import DashboardSidebar from "@/components/DashboardSidebar.jsx";
 import DashboardOverview from "@/components/DashboardOverview.jsx";
-
+import MedicationTracking from "@/components/MedicationTracking.jsx";
+import WeightProgress from "@/components/WeightProgress.jsx";
 import { useAuth } from "@/contexts/AuthContext";
 
 const DashboardLayout = () => {
@@ -46,7 +47,8 @@ const Dashboard = () => {
     <Routes>
       <Route element={<DashboardLayout />}>
         <Route index element={<DashboardOverview />} />
-
+        <Route path="weight" element={<WeightProgress />} />
+        <Route path="medications" element={<MedicationTracking />} />
         <Route
           path="settings"
           element={
