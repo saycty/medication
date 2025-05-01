@@ -29,46 +29,36 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   }, []);
-  const login = (email, password) => {
-    return new Promise((resolve, reject) => {
-      try {
-        axios
-          .post("http://localhost:5000/api/auth/login", {
-            email,
-            password,
-          })
-          .then((response) => {
-            const token = response.data.token;
-            const user = response.data.user;
-            setUser(user);
-            localStorage.setItem("acme_user", JSON.stringify(user));
-            localStorage.setItem("token", token);
-            toast({
-              title: "Login Successful",
-              description: "Welcome back to your wellness dashboard!",
-            });
-            navigate("/dashboard");
-            resolve(user);
-          })
-          .catch((error) => {
-            toast({
-              title: "Login Failed",
-              description: "Please check your credentials and try again.",
-              variant: "destructive",
-            });
-            reject(error);
-          });
-      } catch (error) {
-        console.error("Error logging in:", error);
-        toast({
-          title: "Login Failed",
-          description: "An unexpected error occurred. Please try again.",
-          variant: "destructive",
-        });
-        reject(error);
-      }
-    });
+  const login = async (email, password) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+      const { token, user } = response.data;
+
+      // Storing the token in localStorage
+      localStorage.setItem("token", token);
+      setUser(user);
+
+      toast({
+        title: "Login Successful",
+        description: "Welcome back!",
+      });
+      navigate("/dashboard");
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Please check your credentials.",
+        variant: "destructive",
+      });
+      console.error("Login failed:", error);
+    }
   };
+
   const signup = (email, password) => {
     return new Promise((resolve, reject) => {
       try {
@@ -81,7 +71,6 @@ export const AuthProvider = ({ children }) => {
             const token = response.data.token;
             const user = response.data.user;
             setUser(user);
-            localStorage.setItem("acme_user", JSON.stringify(user));
             localStorage.setItem("token", token);
             toast({
               title: "Account Created",
@@ -112,7 +101,6 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("acme_user");
     localStorage.removeItem("token");
     toast({
       title: "Logged Out",
