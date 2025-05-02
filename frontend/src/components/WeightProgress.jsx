@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import {
-  // generateWeightData,
   userProfile,
   calculateBMI,
   getBMICategory,
@@ -48,14 +47,6 @@ const WeightProgress = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // const data = generateWeightData(userProfile.initialWeight);
-    // const data = [
-    //   { id: "w1", userId: "1", weight: 180, date: "2024-03-01" },
-    //   { id: "w2", userId: "1", weight: 177, date: "2024-03-08" },
-    //   { id: "w3", userId: "1", weight: 174, date: "2024-03-15" },
-    //   { id: "w4", userId: "1", weight: 172, date: "2024-03-22" },
-    //   { id: "w5", userId: "1", weight: 170, date: "2024-03-29" },
-    // ];
     setWeightData(weightHistory);
     setProfile(userProfile);
   }, []);

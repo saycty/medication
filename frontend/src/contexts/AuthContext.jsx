@@ -3,7 +3,7 @@ import { useToast } from "../hooks/use-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const AuthContext = createContext(null);
-
+const API_URL = "http://localhost:5000/api";
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios
-        .get("/api/me")
+        .get(`${API_URL}/me`)
         .then((response) => {
           setUser(response.data);
         })
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       try {
         axios
-          .post("http://localhost:5000/api/auth/login", {
+          .post(`${API_URL}/auth/login`, {
             email,
             password,
           })
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     return new Promise((resolve, reject) => {
       try {
         axios
-          .post("http://localhost:5000/api/auth/register", {
+          .post(`${API_URL}/auth/register`, {
             email,
             password,
           })

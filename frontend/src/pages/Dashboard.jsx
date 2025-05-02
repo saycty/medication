@@ -10,7 +10,6 @@ import { useAuth } from "@/contexts/AuthContext";
 const DashboardLayout = () => {
   const { isAuthenticated, loading } = useAuth();
 
-  // If still loading auth status, show a loading indicator
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -22,7 +21,6 @@ const DashboardLayout = () => {
     );
   }
 
-  // Redirect to login if not authenticated
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
   }
