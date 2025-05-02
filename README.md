@@ -20,7 +20,6 @@ This is a full-stack prototype for the **Patient Dashboard** as part of the Full
 ##  Figma Designs
 
 You can preview the UI design and UX structure in the Figma link below:
-[View Figma Designs](https://www.figma.com/file/your-figma-link-here)  
 *https://www.figma.com/design/yK9do2A5ila8KYgLoQ6ct6/Untitled?node-id=9-120&t=nlikXplBQhLw7YoS-1*
 
 ---
@@ -39,11 +38,10 @@ from the backend apis, which ideally should be stored somewhere in DB or in redi
 ---
 
 ## Running the Project Locally
-
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/medication.git
+git clone https://github.com/saycty/medication.git
 cd medication
 cd frontend
 npm run dev
